@@ -1,20 +1,29 @@
 import {
-  StyleSheet, Text, View, Image, FlatList, TouchableOpacity, Dimensions, ScrollView, TextInput, Pressable,
-} from 'react-native'
-import React, { useState, useEffect } from 'react'
-import { getNews } from '../NewsHTTP'
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  FlatList,
+  TouchableOpacity,
+  Dimensions,
+  ScrollView,
+  TextInput,
+  Pressable,
+  KeyboardAvoidingView,
+} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {getNews} from '../NewsHTTP';
 import Trending from './Trending';
 import UserContext from '../user/UserContext';
 
-
-const Home = (props) => {
-  const [showTrending, setshowTrending] = useState(true)
+const Home = props => {
+  const [showTrending, setshowTrending] = useState(true);
   const [selectedId, setSelectedId] = useState(1);
-  const { navigation } = props
-  const [news, setNews] = useState([])
+  const {navigation} = props;
+  const [news, setNews] = useState([]);
   const clickNe = () => {
-    navigation.navigate('NewDetail')
-  }
+    navigation.navigate('NewDetail');
+  };
   // useeffect la gi?
   // hooks để gọi API lấy data
   // chạy ngay sau khi màn hình render
@@ -33,140 +42,187 @@ const Home = (props) => {
         console.log(error);
         throw error;
       }
-    }
+    };
     fetchData();
-  }, [])
+  }, []);
   // 3. chạy ngay sau khi màn hình render
   // và khi có state count thay đổi
   // useEffect(() => {
   //   console.log('useEffect 3');
-  // }, [count])  
+  // }, [count])
 
-  const renderItem = ({ item }) => {
-    const { _id, name, price, quantity, description, image, category_id } = item;
+  const renderItem = ({item}) => {
+    const {_id, name, price, quantity, description, image, category_id} = item;
     return (
       <TouchableOpacity
         onPress={() => {
-          navigation.navigate('Detail', { newsId: _id })
-        }}
-      >
+          navigation.navigate('Detail', {newsId: _id});
+        }}>
         <View style={styles.container_ItemList}>
-          <Image style={styles.image} source={{ uri: image }} />
+          <Image style={styles.image} source={{uri: image}} />
           <View style={styles.content}>
-            <Text numberOfLines={1} style={styles.ItemList_content_text}>Name: {name}</Text>
-            <Text numberOfLines={1} style={styles.ItemList_content_text}>Quantity: {quantity}</Text>
-            <Text style={{ marginTop: 2, fontSize: 16, fontWeight: '400', lineHeight: 24, letterSpacing: 0.12, color: '#000' }} numberOfLines={2}>Price{price}</Text>
+            <Text numberOfLines={1} style={styles.ItemList_content_text}>
+              Name: {name}
+            </Text>
+            <Text numberOfLines={1} style={styles.ItemList_content_text}>
+              Quantity: {quantity}
+            </Text>
+            <Text
+              style={{
+                marginTop: 2,
+                fontSize: 16,
+                fontWeight: '400',
+                lineHeight: 24,
+                letterSpacing: 0.12,
+                color: '#000',
+              }}
+              numberOfLines={2}>
+              Price{price}
+            </Text>
             <View style={styles.container_ItemList_bbc}>
               <View style={styles.container_ItemList_bbc_newsDetail}>
-                <Image style={{ width: 24, height: 24 }} source={require('../../../media/ic_bbc.png')}></Image>
+                <Image
+                  style={{width: 24, height: 24}}
+                  source={require('../../../media/ic_bbc.png')}></Image>
                 <Text style={styles.bbc_news_text}>BBC News</Text>
-                <Image style={{ marginStart: 8, width: 14, height: 14 }} source={require('../../../media/ic_clock.png')}></Image>
-                <Text style={[styles.bbc_news_text, styles.bbc_news_text2]}>4h ago</Text>
+                <Image
+                  style={{marginStart: 8, width: 14, height: 14}}
+                  source={require('../../../media/ic_clock.png')}></Image>
+                <Text style={[styles.bbc_news_text, styles.bbc_news_text2]}>
+                  4h ago
+                </Text>
               </View>
               <View>
-                <Image style={{ width: 14, height: 14 }} source={require('../../../media/....png')}></Image>
+                <Image
+                  style={{width: 14, height: 14}}
+                  source={require('../../../media/....png')}></Image>
               </View>
             </View>
           </View>
         </View>
       </TouchableOpacity>
-    )
-  }
+    );
+  };
 
   const Trending = () => {
     return (
-      <View >
+      <View>
         <View style={styles.container_search}>
-          <Image style={{ width: 24, height: 24 }} source={require('../../../media/ic_search.png')}></Image>
-          <TextInput placeholder='Search' style={styles.input_search}></TextInput>
-          <Image style={{ width: 24, height: 24 }} source={require('../../../media/ic_fillter.png')}></Image>
+          <Image
+            style={{width: 24, height: 24}}
+            source={require('../../../media/ic_search.png')}></Image>
+          <TextInput
+            placeholder="Search"
+            style={styles.input_search}></TextInput>
+          <Image
+            style={{width: 24, height: 24}}
+            source={require('../../../media/ic_fillter.png')}></Image>
         </View>
 
         <View style={styles.container_trending}>
           <Text style={styles.trending_text_1}>Trending</Text>
-          <TouchableOpacity onPress={() => props.navigation.navigate('Trending')} >
+          <TouchableOpacity
+            onPress={() => props.navigation.navigate('Trending')}>
             <Text style={styles.trending_text_2}>See all</Text>
           </TouchableOpacity>
-
         </View>
         <View style={styles.container_cards}>
-          <Image style={styles.container_lineNew_img} source={require('../../../media/imgPlanta.png')}></Image>
-          <View >
-            <Text style={styles.lineNew_tex1} >
-              Europe
-            </Text>
+          <Image
+            style={styles.container_lineNew_img}
+            source={require('../../../media/imgPlanta.png')}></Image>
+          <View>
+            <Text style={styles.lineNew_tex1}>Europe</Text>
             <Pressable onPress={clickNe}>
-              <Text style={[styles.lineNew_tex1, styles.lineNew_tex2]} numberOfLines={1}>
+              <Text
+                style={[styles.lineNew_tex1, styles.lineNew_tex2]}
+                numberOfLines={1}>
                 Russian warship: Moskva sinks in Black Sea
               </Text>
             </Pressable>
-
           </View>
-          <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              width: '100%',
+            }}>
             <View style={styles.container_cards_bbcNew}>
-              <Image style={styles.imgbbc} source={require('../../../media/ic_bbc.png')}></Image>
+              <Image
+                style={styles.imgbbc}
+                source={require('../../../media/ic_bbc.png')}></Image>
               <Text style={styles.bbc_text1}>BBC News</Text>
-              <Image style={styles.imgClock} source={require('../../../media/ic_clock.png')}></Image>
+              <Image
+                style={styles.imgClock}
+                source={require('../../../media/ic_clock.png')}></Image>
               <Text style={styles.bbc_text2}>4h ago</Text>
             </View>
             <View>
-              <Image style={styles.bbc_abbreviate} source={require('../../../media/....png')}></Image>
+              <Image
+                style={styles.bbc_abbreviate}
+                source={require('../../../media/....png')}></Image>
             </View>
-
           </View>
         </View>
       </View>
-
-    )
-
-  }
+    );
+  };
 
   const all = () => {
-
     return (
-      <View>
-        <View style={styles.container}>
+      <KeyboardAvoidingView style={styles.container}>
+        <ScrollView
+          showsVerticalScrollIndicator={false} // thanh cuộn
+        >
           <View style={styles.container_kabar}>
-            <Image style={{ width: 99, height: 30 }} source={require('../../../media/ic_kabar.png')}></Image>
+            <Image
+              style={{width: 99, height: 30}}
+              source={require('../../../media/ic_kabar.png')}></Image>
             <View>
-              <Image style={{ width: 42, height: 42 }} source={require('../../../media/ic_bell.png')}></Image>
+              <Image
+                style={{width: 42, height: 42}}
+                source={require('../../../media/ic_bell.png')}></Image>
             </View>
           </View>
-          {
-            showTrending ? Trending() : null
-          }
+          {showTrending ? Trending() : null}
           <View style={styles.container_trending}>
             <Text style={styles.trending_text_1}>Lastest</Text>
-            <TouchableOpacity onPress={() => { setshowTrending(!showTrending) }}>
-              <Text style={styles.trending_text_2} >See all</Text>
+            <TouchableOpacity
+              onPress={() => {
+                setshowTrending(!showTrending);
+              }}>
+              <Text style={styles.trending_text_2}>See all</Text>
             </TouchableOpacity>
-
           </View>
-          <View style={{ height: 50, width: '100%' }}>
+          <View style={{height: 50, width: '100%'}}>
             <ScrollView
               horizontal={true} // chiều
               showsHorizontalScrollIndicator={false} // thanh cuộn
               showsVerticalScrollIndicator={false} // thanh cuộn
             >
-              {
-                CATEGORIES.map((item, index) => {
-                  return (
-                    <TouchableOpacity onPress={() => {
-                      setSelectedId(item.id)
+              {CATEGORIES.map((item, index) => {
+                return (
+                  <TouchableOpacity
+                    onPress={() => {
+                      setSelectedId(item.id);
                     }}
-                      style={styles.item} key={index} >
-                      <Text>{item.name}</Text>
-                      <View
-                        style={item.id.toString() == selectedId.toString() ?
-                          styles.underline : undefined}></View>
-                    </TouchableOpacity>
-                  )
-                })
-              }
+                    style={styles.item}
+                    key={index}>
+                    <Text>{item.name}</Text>
+                    <View
+                      style={
+                        item.id.toString() == selectedId.toString()
+                          ? styles.underline
+                          : undefined
+                      }></View>
+                  </TouchableOpacity>
+                );
+              })}
             </ScrollView>
           </View>
           <View>
             <FlatList
+              scrollEnabled={false}
               horizontal={false} // chiều
               showsHorizontalScrollIndicator={false} // thanh cuộn
               showsVerticalScrollIndicator={false} // thanh cuộn
@@ -174,18 +230,15 @@ const Home = (props) => {
               renderItem={renderItem}
             />
           </View>
-        </View>
-      </View>
+        </ScrollView>
+      </KeyboardAvoidingView>
+    );
+  };
 
-    )
-  }
+  return all();
+};
 
-  return (
-    all()
-  )
-}
-
-export default Home
+export default Home;
 
 const styles = StyleSheet.create({
   underline: {
@@ -205,7 +258,7 @@ const styles = StyleSheet.create({
     width: 14,
     height: 14,
     justifyContent: 'space-between',
-    alignItems: 'flex-start'
+    alignItems: 'flex-start',
   },
 
   bbc_text2: {
@@ -222,7 +275,7 @@ const styles = StyleSheet.create({
   imgClock: {
     width: 14,
     height: 14,
-    marginStart: 12
+    marginStart: 12,
   },
 
   bbc_text1: {
@@ -248,13 +301,13 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     display: 'flex',
-    alignItems: 'center'
+    alignItems: 'center',
   },
 
   lineNew_tex2: {
     fontSize: 16,
     lineHeight: 24,
-    color: '#000'
+    color: '#000',
   },
 
   lineNew_tex1: {
@@ -264,12 +317,12 @@ const styles = StyleSheet.create({
     fontStyle: 'normal',
     lineHeight: 20,
     letterSpacing: 0.12,
-    color: '#4E4B66'
+    color: '#4E4B66',
   },
 
   container_lineNew_img: {
     borderRadius: 6,
-    width: "100%",
+    width: '100%',
     height: 300,
   },
 
@@ -288,7 +341,7 @@ const styles = StyleSheet.create({
     fontStyle: 'normal',
     lineHeight: 21,
     letterSpacing: 0.12,
-    color: '#4E4B66'
+    color: '#4E4B66',
   },
   trending_text_1: {
     fontFamily: 'Poppins',
@@ -297,7 +350,7 @@ const styles = StyleSheet.create({
     fontStyle: 'normal',
     lineHeight: 24,
     letterSpacing: 0.12,
-    color: '#000'
+    color: '#000',
   },
   container_trending: {
     marginTop: 16,
@@ -331,14 +384,13 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     borderRadius: 6,
-    backgroundColor: '#FFFFFF'
+    backgroundColor: '#FFFFFF',
   },
 
   bbc_news_text2: {
     fontSize: 13,
     fontStyle: 'normal',
-    fontWeight: '400'
-
+    fontWeight: '400',
   },
 
   bbc_news_text: {
@@ -348,26 +400,24 @@ const styles = StyleSheet.create({
     fontWeight: '800',
     lineHeight: 20,
     letterSpacing: 0.12,
-    color: '#4E4B66'
+    color: '#4E4B66',
   },
   container_ItemList_bbc: {
     marginTop: 2,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   container_ItemList_bbc_newsDetail: {
     flexDirection: 'row',
     justifyContent: 'center',
-    alignItems: 'center'
-
+    alignItems: 'center',
   },
   container_ItemList: {
     flexDirection: 'row',
     marginTop: 16,
     marginStart: 8,
     width: '100%',
-
   },
   image: {
     width: 96,
@@ -376,101 +426,132 @@ const styles = StyleSheet.create({
   },
   content: {
     marginStart: 10,
-    width: Dimensions.get('window').width - 160
+    width: Dimensions.get('window').width - 160,
   },
-})
+});
 
-var CATEGORIES = [{
-  "id": 1,
-  "name": "Robby"
-}, {
-  "id": 2,
-  "name": "Wanda"
-}, {
-  "id": 3,
-  "name": "Derrek"
-}, {
-  "id": 4,
-  "name": "Eleonora"
-}, {
-  "id": 5,
-  "name": "Issy"
-}, {
-  "id": 6,
-  "name": "Herrick"
-}, {
-  "id": 7,
-  "name": "Erhart"
-}, {
-  "id": 8,
-  "name": "Stavro"
-}, {
-  "id": 9,
-  "name": "Giacobo"
-}, {
-  "id": 10,
-  "name": "Jana"
-}, {
-  "id": 11,
-  "name": "Constantine"
-}, {
-  "id": 12,
-  "name": "Nikola"
-}, {
-  "id": 13,
-  "name": "Nolie"
-}, {
-  "id": 14,
-  "name": "Jarred"
-}, {
-  "id": 15,
-  "name": "Baxie"
-}, {
-  "id": 16,
-  "name": "Mike"
-}, {
-  "id": 17,
-  "name": "Sutherland"
-}, {
-  "id": 18,
-  "name": "Charmaine"
-}, {
-  "id": 19,
-  "name": "Bobbe"
-}, {
-  "id": 20,
-  "name": "Ferris"
-}, {
-  "id": 21,
-  "name": "Byrom"
-}, {
-  "id": 22,
-  "name": "Deeyn"
-}, {
-  "id": 23,
-  "name": "Nerita"
-}, {
-  "id": 24,
-  "name": "Sherry"
-}, {
-  "id": 25,
-  "name": "Chrisy"
-}, {
-  "id": 26,
-  "name": "Spencer"
-}, {
-  "id": 27,
-  "name": "Gwenette"
-}, {
-  "id": 28,
-  "name": "Morty"
-}, {
-  "id": 29,
-  "name": "Marie"
-}, {
-  "id": 30,
-  "name": "Udall"
-}, {
-  "id": 31,
-
-}]
+var CATEGORIES = [
+  {
+    id: 1,
+    name: 'Robby',
+  },
+  {
+    id: 2,
+    name: 'Wanda',
+  },
+  {
+    id: 3,
+    name: 'Derrek',
+  },
+  {
+    id: 4,
+    name: 'Eleonora',
+  },
+  {
+    id: 5,
+    name: 'Issy',
+  },
+  {
+    id: 6,
+    name: 'Herrick',
+  },
+  {
+    id: 7,
+    name: 'Erhart',
+  },
+  {
+    id: 8,
+    name: 'Stavro',
+  },
+  {
+    id: 9,
+    name: 'Giacobo',
+  },
+  {
+    id: 10,
+    name: 'Jana',
+  },
+  {
+    id: 11,
+    name: 'Constantine',
+  },
+  {
+    id: 12,
+    name: 'Nikola',
+  },
+  {
+    id: 13,
+    name: 'Nolie',
+  },
+  {
+    id: 14,
+    name: 'Jarred',
+  },
+  {
+    id: 15,
+    name: 'Baxie',
+  },
+  {
+    id: 16,
+    name: 'Mike',
+  },
+  {
+    id: 17,
+    name: 'Sutherland',
+  },
+  {
+    id: 18,
+    name: 'Charmaine',
+  },
+  {
+    id: 19,
+    name: 'Bobbe',
+  },
+  {
+    id: 20,
+    name: 'Ferris',
+  },
+  {
+    id: 21,
+    name: 'Byrom',
+  },
+  {
+    id: 22,
+    name: 'Deeyn',
+  },
+  {
+    id: 23,
+    name: 'Nerita',
+  },
+  {
+    id: 24,
+    name: 'Sherry',
+  },
+  {
+    id: 25,
+    name: 'Chrisy',
+  },
+  {
+    id: 26,
+    name: 'Spencer',
+  },
+  {
+    id: 27,
+    name: 'Gwenette',
+  },
+  {
+    id: 28,
+    name: 'Morty',
+  },
+  {
+    id: 29,
+    name: 'Marie',
+  },
+  {
+    id: 30,
+    name: 'Udall',
+  },
+  {
+    id: 31,
+  },
+];
