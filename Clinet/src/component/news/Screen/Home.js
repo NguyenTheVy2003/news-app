@@ -11,15 +11,15 @@ import {
   Pressable,
   KeyboardAvoidingView,
 } from 'react-native';
-import React, {useState, useEffect} from 'react';
-import {getNews} from '../NewsHTTP';
+import React, { useState, useEffect } from 'react';
+import { getNews } from '../NewsHTTP';
 import Trending from './Trending';
 import UserContext from '../user/UserContext';
 
 const Home = props => {
   const [showTrending, setshowTrending] = useState(true);
   const [selectedId, setSelectedId] = useState(1);
-  const {navigation} = props;
+  const { navigation } = props;
   const [news, setNews] = useState([]);
   const clickNe = () => {
     navigation.navigate('NewDetail');
@@ -51,15 +51,15 @@ const Home = props => {
   //   console.log('useEffect 3');
   // }, [count])
 
-  const renderItem = ({item}) => {
-    const {_id, name, price, quantity, description, image, category_id} = item;
+  const renderItem = ({ item }) => {
+    const { _id, name, price, quantity, description, image, category_id } = item;
     return (
       <TouchableOpacity
         onPress={() => {
-          navigation.navigate('Detail', {newsId: _id});
+          navigation.navigate('Detail', { newsId: _id });
         }}>
         <View style={styles.container_ItemList}>
-          <Image style={styles.image} source={{uri: image}} />
+          <Image style={styles.image} source={{ uri: image }} />
           <View style={styles.content}>
             <Text numberOfLines={1} style={styles.ItemList_content_text}>
               Name: {name}
@@ -82,11 +82,11 @@ const Home = props => {
             <View style={styles.container_ItemList_bbc}>
               <View style={styles.container_ItemList_bbc_newsDetail}>
                 <Image
-                  style={{width: 24, height: 24}}
+                  style={{ width: 24, height: 24 }}
                   source={require('../../../media/ic_bbc.png')}></Image>
                 <Text style={styles.bbc_news_text}>BBC News</Text>
                 <Image
-                  style={{marginStart: 8, width: 14, height: 14}}
+                  style={{ marginStart: 8, width: 14, height: 14 }}
                   source={require('../../../media/ic_clock.png')}></Image>
                 <Text style={[styles.bbc_news_text, styles.bbc_news_text2]}>
                   4h ago
@@ -94,7 +94,7 @@ const Home = props => {
               </View>
               <View>
                 <Image
-                  style={{width: 14, height: 14}}
+                  style={{ width: 14, height: 14 }}
                   source={require('../../../media/....png')}></Image>
               </View>
             </View>
@@ -109,13 +109,13 @@ const Home = props => {
       <View>
         <View style={styles.container_search}>
           <Image
-            style={{width: 24, height: 24}}
+            style={{ width: 24, height: 24 }}
             source={require('../../../media/ic_search.png')}></Image>
           <TextInput
             placeholder="Search"
             style={styles.input_search}></TextInput>
           <Image
-            style={{width: 24, height: 24}}
+            style={{ width: 24, height: 24 }}
             source={require('../../../media/ic_fillter.png')}></Image>
         </View>
 
@@ -176,12 +176,17 @@ const Home = props => {
         >
           <View style={styles.container_kabar}>
             <Image
-              style={{width: 99, height: 30}}
+              style={{ width: 99, height: 30 }}
               source={require('../../../media/ic_kabar.png')}></Image>
             <View>
-              <Image
-                style={{width: 42, height: 42}}
-                source={require('../../../media/ic_bell.png')}></Image>
+              <TouchableOpacity onPress={() => props.navigation.navigate('Notification')}>
+                <Image
+                  style={{ width: 42, height: 42 }}
+                  source={require('../../../media/ic_bell.png')}
+                  >
+                </Image>
+              </TouchableOpacity>
+
             </View>
           </View>
           {showTrending ? Trending() : null}
@@ -194,7 +199,7 @@ const Home = props => {
               <Text style={styles.trending_text_2}>See all</Text>
             </TouchableOpacity>
           </View>
-          <View style={{height: 50, width: '100%'}}>
+          <View style={{ height: 50, width: '100%' }}>
             <ScrollView
               horizontal={true} // chiều
               showsHorizontalScrollIndicator={false} // thanh cuộn
@@ -374,16 +379,21 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
   },
   input_search: {
-    width: 230,
+    width: 311,
+    fontSize: 14,
+    fontWeight: '400',
+    lineHeight: 21,
   },
   container_search: {
     flexDirection: 'row',
     borderColor: '#4E4B66',
     borderWidth: 1,
+    display: 'flex',
     padding: 10,
     justifyContent: 'space-between',
     alignItems: 'center',
     borderRadius: 6,
+    alignSelf: 'stretch',
     backgroundColor: '#FFFFFF',
   },
 

@@ -11,6 +11,7 @@ import Explore from './Screen/Explore';
 import BookMark from './Screen/BookMark';
 import Home from './Screen/Home';
 import Trending from './Screen/Trending';
+import Notification from './Screen/Notification';
 import Detail from './Screen/Detail';
 import { Title } from 'react-native-paper';
 import NewDetail from '../../Demo/NewDetail';
@@ -28,6 +29,7 @@ const HomeStack = () => {
       <Stack.Screen name='Detail' component={Detail}></Stack.Screen>
       <Stack.Screen name='Trending' component={Trending}></Stack.Screen>
       <Stack.Screen name='Insert' component={Insert}></Stack.Screen>
+      <Stack.Screen name='Notification' component={Notification}></Stack.Screen>
 
     </Stack.Navigator>
   )

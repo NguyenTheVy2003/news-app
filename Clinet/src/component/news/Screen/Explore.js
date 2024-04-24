@@ -91,7 +91,8 @@ const Explore = (props) => {
         <TouchableOpacity onPress={onSearch}>
           <Image style={{ width: 24, height: 24 }} source={require('../../../media/ic_search.png')}></Image>
         </TouchableOpacity>
-        <TextInput placeholder='Search...' style={styles.input_search}
+        <TextInput placeholder="Search"
+            style={styles.input_search}
           onChangeText={(text) => countDownSearch(text)}>
         </TextInput>
         <Image style={{ width: 24, height: 24 }} source={require('../../../media/ic_X.png')}></Image>
@@ -128,17 +129,22 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   input_search: {
-    width: 230,
+    width: 311,
+    fontSize: 14,
+    fontWeight: '400',
+    lineHeight: 21,
   },
   container_search: {
     flexDirection: 'row',
     borderColor: '#4E4B66',
     borderWidth: 1,
+    display: 'flex',
     padding: 10,
     justifyContent: 'space-between',
     alignItems: 'center',
     borderRadius: 6,
-    backgroundColor: '#FFF'
+    alignSelf: 'stretch',
+    backgroundColor: '#FFFFFF',
   },
   underline: {
     width: '100%',

@@ -81,7 +81,7 @@ const Trending = (props) => {
           <Image style={styles.ic} source={require('../../../media/ic_back.png')} />
         </TouchableOpacity>
 
-        <Text style={styles.txt_trending}>Product</Text>
+        <Text style={styles.txt_trending}>Trending</Text>
         <Image style={styles.ic} source={require('../../../media/ic_outline.png')} />
       </View>
 
