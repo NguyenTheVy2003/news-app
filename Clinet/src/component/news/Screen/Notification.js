@@ -120,7 +120,7 @@ const Notification = (props) => {
                 />
                 <View style={{
                     width: '100%',
-                     width: Dimensions.get('window').width - 90,
+                     width: Dimensions.get('window').width - 100,
                 }}>
                     <Text style={{
                         fontSize: 16,
