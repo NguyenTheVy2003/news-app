@@ -16,7 +16,7 @@ const HeaderCategory = () => {
         
           <div class="order-lg-last col-lg-5 col-sm-8 col-8">
             <div class="d-flex float-end">
-              <a href="http://localhost:3000/" class="me-1 border rounded py-1 px-3 nav-link d-flex align-items-center" target="_blank"> <i class="fas fa-user-alt m-1 me-md-2"></i><p class="d-none d-md-block mb-0">Product</p> </a>
+              <a href="http://localhost:3000/" class="me-1 border rounded py-1 px-3 nav-link d-flex align-items-center" > <i class="fas fa-user-alt m-1 me-md-2"></i><p class="d-none d-md-block mb-0">Product</p> </a>
               <a href="https://github.com/mdbootstrap/bootstrap-material-design" class="me-1 border rounded py-1 px-3 nav-link d-flex align-items-center" target="_blank"> <i class="fas fa-heart m-1 me-md-2"></i><p class="d-none d-md-block mb-0">Wishlist</p> </a>
               <a href="https://github.com/mdbootstrap/bootstrap-material-design" class="border rounded py-1 px-3 nav-link d-flex align-items-center" target="_blank"> <i class="fas fa-shopping-cart m-1 me-md-2"></i><p class="d-none d-md-block mb-0">My cart</p> </a>
             </div>
@@ -43,7 +43,7 @@ const HeaderCategory = () => {
       
         <nav class="d-flex">
           <h6 class="mb-0">
-            <a href="http://localhost:3000/Category" class="text-white-50">Category</a>
+            <a href="/Category" class="text-white-50">Category</a>
             <span class="text-white-50 mx-2">  </span>
             <a href="" class="text-white-50">Library</a>
             <span class="text-white-50 mx-2">  </span>
