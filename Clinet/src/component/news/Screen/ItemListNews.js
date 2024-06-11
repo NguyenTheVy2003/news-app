@@ -1,27 +1,22 @@
-import { Image, StyleSheet, Text, View, Dimensions } from 'react-native'
-import React from 'react'
+import React from 'react';
+import {Dimensions, Image, StyleSheet, Text, View} from 'react-native';
 
-
-const ItemListNews = (props) => {
-  const { data } = props;
+const ItemListNews = props => {
+  const {data} = props;
   return (
     <View style={styles.container}>
-      <Image style={styles.image} source={{ uri: data.image }} />
+      <Image style={styles.image} source={{uri: data.image}} />
       <View style={styles.content}>
         <Text style={styles.content_text}>{data.title}</Text>
-        <Text>
-          15m ago
-        </Text>
+        <Text>15m ago</Text>
       </View>
     </View>
-  )
-}
+  );
+};
 
-export default ItemListNews
+export default ItemListNews;
 
 const styles = StyleSheet.create({
-
-
   container: {
     marginTop: 16,
     display: 'flex',
@@ -33,7 +28,7 @@ const styles = StyleSheet.create({
     gap: 16,
     borderRadius: 6,
     backgroundColor: '#EEF1F4',
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
   image: {
     width: 70,
@@ -41,7 +36,7 @@ const styles = StyleSheet.create({
     height: 70,
     justifyContent: 'center',
     alignItems: 'center',
-    flexShrink: 0
+    flexShrink: 0,
   },
   content: {
     width: '100%',
@@ -54,6 +49,4 @@ const styles = StyleSheet.create({
     lineHeight: 24,
     letterSpacing: 0.12,
   },
-})
-
-
+});

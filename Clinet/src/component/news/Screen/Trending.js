@@ -1,19 +1,22 @@
+import React, {useEffect, useState} from 'react';
 import {
-  StyleSheet, Text, View, Image, FlatList, TouchableOpacity, ActivityIndicator
-} from 'react-native'
-import React, { useState, useEffect, useContext } from 'react'
-import { getNews } from '../NewsHTTP'
-import { UserContext } from '../user/UserContext'
-import AxiosInstance from '../../../helper/AxiosInstance'
+  ActivityIndicator,
+  FlatList,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import {getNews} from '../NewsHTTP';
 
-
-const Trending = (props) => {
-  const { navigation } = props;
+const Trending = props => {
+  const {navigation} = props;
   const [isLoading, setisLoading] = useState(false);
-  const [news, setNews] = useState([])
+  const [news, setNews] = useState([]);
   const clickNe = () => {
-    navigation.navigate('NewDetail')
-  }
+    navigation.navigate('NewDetail');
+  };
   // useeffect la gi?
   // hooks để gọi API lấy data
   // chạy ngay sau khi màn hình render
@@ -31,86 +34,103 @@ const Trending = (props) => {
         console.log(error);
         throw error;
       }
-    }
+    };
     fetchData();
-  }, [])
+  }, []);
 
-
-  const renderItem = ({ item }) => {
-    const { _id, name, price, quantity, description, image } = item;
+  const renderItem = ({item}) => {
+    const {_id, name, price, quantity, description, image} = item;
     return (
-
-      <View >
+      <View>
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate('Detail', { newsId: _id })
-          }}
-        >
+            navigation.navigate('Detail', {newsId: _id});
+          }}>
           <View style={styles.container_title}>
-            <Image style={styles.img} source={{ uri: image }} />
+            <Image style={styles.img} source={{uri: image}} />
             <View style={styles.container_title_content}>
               <Text style={styles.txt_title_bbc2}>Name: {name}</Text>
               <Text style={styles.txt_title}>Price: {price} $</Text>
               <View style={styles.container_title_content2}>
                 <View style={styles.container_title_content3}>
                   <View style={styles.container_title_content4}>
-                    <Image style={styles.ic_title} source={require('../../../media/ic_bbc.png')} />
+                    <Image
+                      style={styles.ic_title}
+                      source={require('../../../media/ic_bbc.png')}
+                    />
                     <Text style={styles.txt_title_bbc}>BBC News</Text>
                   </View>
                   <View style={styles.container_title_content4}>
-                    <Image style={styles.ic_title} source={require('../../../media/ic_clock.png')} />
-                    <Text style={[styles.txt_title_bbc2, styles.txt_title_trending2]}>4h ago</Text>
+                    <Image
+                      style={styles.ic_title}
+                      source={require('../../../media/ic_clock.png')}
+                    />
+                    <Text
+                      style={[
+                        styles.txt_title_bbc2,
+                        styles.txt_title_trending2,
+                      ]}>
+                      4h ago
+                    </Text>
                   </View>
                 </View>
 
                 <View>
-                  <Image style={styles.ic_title} source={require('../../../media/....png')} />
+                  <Image
+                    style={styles.ic_title}
+                    source={require('../../../media/....png')}
+                  />
                 </View>
               </View>
             </View>
           </View>
         </TouchableOpacity>
       </View>
-    )
-  }
+    );
+  };
 
   return (
     <View style={styles.conatiner}>
       <View style={styles.conatiner_trending}>
-        <TouchableOpacity onPress={() => props.navigation.navigate('Home')} >
-          <Image style={styles.ic} source={require('../../../media/ic_back.png')} />
+        <TouchableOpacity onPress={() => props.navigation.navigate('Home')}>
+          <Image
+            style={styles.ic}
+            source={require('../../../media/ic_back.png')}
+          />
         </TouchableOpacity>
 
         <Text style={styles.txt_trending}>Trending</Text>
-        <Image style={styles.ic} source={require('../../../media/ic_outline.png')} />
+        <Image
+          style={styles.ic}
+          source={require('../../../media/ic_outline.png')}
+        />
       </View>
 
-
-      {
-        isLoading == true ? (
-          <View style={styles.container_isloading}>
-            <ActivityIndicator size='large' color='#fff00' />
-            <Text>Loading...</Text>
-          </View>
-        ) : (<FlatList
+      {isLoading == true ? (
+        <View style={styles.container_isloading}>
+          <ActivityIndicator size="large" color="#fff00" />
+          <Text>Loading...</Text>
+        </View>
+      ) : (
+        <FlatList
           showsHorizontalScrollIndicator={false} // thanh cuộn
           showsVerticalScrollIndicator={false} // thanh cuộn
           data={news}
           renderItem={renderItem}
-          keyExtractor={(item) => item._id}
+          keyExtractor={item => item._id}
         />
-        )}
+      )}
     </View>
-  )
-}
+  );
+};
 
-export default Trending
+export default Trending;
 
 const styles = StyleSheet.create({
   container_isloading: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   txt_title: {
     fontSize: 16,
@@ -120,7 +140,6 @@ const styles = StyleSheet.create({
     lineHeight: 24,
     letterSpacing: 0.12,
     color: '#000',
-
   },
   txt_title_bbc2: {
     fontWeight: '400',
@@ -134,7 +153,6 @@ const styles = StyleSheet.create({
     color: '#4E4B66',
   },
   container_title_content4: {
-
     justifyContent: 'center',
     alignItems: 'center',
     gap: 4,
@@ -173,7 +191,6 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     gap: 8,
     borderRadius: 6,
-
   },
   conatiner_trending: {
     flexDirection: 'row',
@@ -197,4 +214,4 @@ const styles = StyleSheet.create({
     width: 24,
     height: 24,
   },
-})
+});

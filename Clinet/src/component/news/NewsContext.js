@@ -1,14 +1,14 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React from 'react';
+import {StyleSheet, Text, View} from 'react-native';
 
 const NewsContext = () => {
   return (
     <View>
       <Text>NewsContext</Text>
     </View>
-  )
-}
+  );
+};
 
-export default NewsContext
+export default NewsContext;
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({});

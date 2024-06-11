@@ -1,94 +1,121 @@
-import { Image, ScrollView, StyleSheet, Text, View, TouchableOpacity, Pressable } from 'react-native'
-import React, { useState } from 'react'
+import React, {useState} from 'react';
+import {
+  Image,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import NewsProfile from './NewsProfile';
-import Recent from './Recent';
-import EditProfile from './EditProfile';
 
-const Profile = (props) => {
+const Profile = props => {
   const [selectedId, setSelectedId] = useState(1);
   const {navigation} = props;
   const clickNe = () => {
-    navigation.navigate('NewsProfile')
-  }
+    navigation.navigate('NewsProfile');
+  };
 
   const clickNe2 = () => {
-    navigation.navigate('Recent')
-  }
+    navigation.navigate('Recent');
+  };
 
   const clickNe3 = () => {
-    navigation.navigate('EditProfile')
-  }
+    navigation.navigate('EditProfile');
+  };
   return (
-    <ScrollView style={styles.container}
+    <ScrollView
+      style={styles.container}
       showsHorizontalScrollIndicator={false} // thanh cuộn
       showsVerticalScrollIndicator={false} // thanh cuộn
     >
       <View style={styles.container_setting}>
-        <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: '55%' }}>
-          <Text style={[styles.text_follower, styles.text_follower2]}>Profile</Text>
-          <Image style={{ width: 24, height: 24 }} source={require('../../../media/ic_setting.png')}></Image>
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            width: '55%',
+          }}>
+          <Text style={[styles.text_follower, styles.text_follower2]}>
+            Profile
+          </Text>
+          <Image
+            style={{width: 24, height: 24}}
+            source={require('../../../media/ic_setting.png')}></Image>
         </View>
-
       </View>
       <View style={styles.container_my_profile}>
-        <Image style={{ width: 100, height: 100 }} source={require('../../../media/img_profile.png')}></Image>
+        <Image
+          style={{width: 100, height: 100}}
+          source={require('../../../media/img_profile.png')}></Image>
         <View style={styles.container_follower}>
           <View style={styles.container_my_profile_follower}>
             <Text style={styles.text_follower}>2156</Text>
-            <Text style={[styles.text_follower, styles.text_follower2]}>Followers</Text>
+            <Text style={[styles.text_follower, styles.text_follower2]}>
+              Followers
+            </Text>
           </View>
           <View style={styles.container_my_profile_follower}>
             <Text style={styles.text_follower}>567</Text>
-            <Text style={[styles.text_follower, styles.text_follower2]}>Following</Text>
+            <Text style={[styles.text_follower, styles.text_follower2]}>
+              Following
+            </Text>
           </View>
           <View style={styles.container_my_profile_follower}>
             <Text style={styles.text_follower}>23</Text>
-            <Text style={[styles.text_follower, styles.text_follower2]}>News</Text>
+            <Text style={[styles.text_follower, styles.text_follower2]}>
+              News
+            </Text>
           </View>
         </View>
       </View>
-      <View style={{ marginTop: 16 }}>
+      <View style={{marginTop: 16}}>
         <Text style={styles.text_profile}>Wilson Franci</Text>
-        <Text style={[styles.text_profile, styles.text_profile2]}>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</Text>
+        <Text style={[styles.text_profile, styles.text_profile2]}>
+          Lorem Ipsum is simply dummy text of the printing and typesetting
+          industry.
+        </Text>
       </View>
-      <View style={styles.socialButtons} >
+      <View style={styles.socialButtons}>
         <Pressable style={styles.buttonFBGG} onPress={clickNe3}>
-          <Text style={styles.buttonFBGGText} >Edit profile</Text>
+          <Text style={styles.buttonFBGGText}>Edit profile</Text>
         </Pressable>
 
         <TouchableOpacity style={styles.buttonFBGG}>
           <Text style={styles.buttonFBGGText}>Website</Text>
         </TouchableOpacity>
-
       </View>
       <View style={styles.container_newProfile}>
         <View>
           <Pressable>
-            <Text onPress={() => props.navigation.navigate('NewsProfile')}>News</Text>
+            <Text onPress={() => props.navigation.navigate('NewsProfile')}>
+              News
+            </Text>
           </Pressable>
         </View>
-        
-        <View>
-          <Pressable style = {{marginStart: 24,}}>
-            <Text onPress={() => props.navigation.navigate('Recent')}>Recent</Text>
-          </Pressable>
-        </View>
-       
-      </View>
-      <NewsProfile/>
-    </ScrollView>
-  )
-}
 
-export default Profile
+        <View>
+          <Pressable style={{marginStart: 24}}>
+            <Text onPress={() => props.navigation.navigate('Recent')}>
+              Recent
+            </Text>
+          </Pressable>
+        </View>
+      </View>
+      <NewsProfile />
+    </ScrollView>
+  );
+};
+
+export default Profile;
 
 const styles = StyleSheet.create({
   container_newProfile: {
     flexDirection: 'row',
     justifyContent: 'center',
     padding: 13,
-    alignItems: 'center'
-   
+    alignItems: 'center',
   },
   container_editProfile: {
     flexDirection: 'row',
@@ -102,7 +129,6 @@ const styles = StyleSheet.create({
     color: '#4E4B66',
     fontWeight: '600',
     fontSize: 16,
-
   },
 
   text_profile: {
@@ -115,10 +141,9 @@ const styles = StyleSheet.create({
     letterSpacing: 0.12,
   },
 
-
   container_my_profile_follower: {
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   //#4E4B66
 
@@ -137,12 +162,10 @@ const styles = StyleSheet.create({
     fontStyle: 'normal',
     lineHeight: 24,
     letterSpacing: 0.12,
-
   },
   container_my_profile: {
     flexDirection: 'row',
     marginTop: 13,
-
   },
   container_follower: {
     fontStyle: 'normal',
@@ -151,11 +174,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: 196,
     marginStart: 16,
-
   },
   container_setting: {
     width: '100%',
-    alignItems: 'flex-end'
+    alignItems: 'flex-end',
   },
   container: {
     padding: 24,
@@ -201,12 +223,15 @@ const styles = StyleSheet.create({
     margin: 10,
     // backgroundColor: 'red',
   },
-})
+});
 
-var CATEGORIES = [{
-  "id": 1,
-  "name": "News"
-}, {
-  "id": 2,
-  "name": "Recent"
-}]
+var CATEGORIES = [
+  {
+    id: 1,
+    name: 'News',
+  },
+  {
+    id: 2,
+    name: 'Recent',
+  },
+];

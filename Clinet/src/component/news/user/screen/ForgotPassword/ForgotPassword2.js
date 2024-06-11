@@ -1,28 +1,36 @@
-import { Image, Pressable, StyleSheet, Text, TextInput, View, TouchableOpacity, KeyboardAvoidingView, ScrollView} from 'react-native'
-import React, { useState } from 'react'
-import AxiosInstance from '../../../../../helper/AxiosInstance';
-import { fogotPass } from '../../UserHTTP';
+import React, {useState} from 'react';
+import {
+  Image,
+  KeyboardAvoidingView,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import {fogotPass} from '../../UserHTTP';
 
-const ForgotPassword2 = (props) => {
+const ForgotPassword2 = props => {
   const [email, setEmail] = useState('');
-  const { navigation } = props
+  const {navigation} = props;
   const onSubmit = async () => {
     try {
       // const response = await AxiosInstance().post('http://192.168.1.114:8686/users/forgot-password', { email });
-      const response = await fogotPass(email)
-      const { status } = response;
+      const response = await fogotPass(email);
+      const {status} = response;
       if (status) {
         alert('Password reset link sent successfully');
         // onPress = props.navigation.navigate = 'ResetPassword';
       } else {
         alert('Error sending password reset link');
       }
-
     } catch (error) {
       console.error(error);
       alert('An error occurred. Please try again later.');
     }
-  }
+  };
 
   return (
     <KeyboardAvoidingView style={styles.container}>
@@ -33,22 +41,26 @@ const ForgotPassword2 = (props) => {
         <View>
           <View>
             <Pressable>
-              <Image style={styles.ic} source={require('../../../../../media/ic_back.png')} />
+              <Image
+                style={styles.ic}
+                source={require('../../../../../media/ic_back.png')}
+              />
             </Pressable>
 
             <Text style={styles.text_forgotPassword}>Forgot Password ?</Text>
             <Text style={styles.text_txt}>
-              Don’t worry! it happens. Please enter the
-              address associated with your account.
+              Don’t worry! it happens. Please enter the address associated with
+              your account.
             </Text>
             <View style={styles.container_textInput}>
               <Text style={styles.txt_textInput}>Email ID / Mobile number</Text>
-              <TextInput style={styles.textInput}
+              <TextInput
+                style={styles.textInput}
                 value={email}
-                onChangeText={setEmail} />
+                onChangeText={setEmail}
+              />
             </View>
           </View>
-
         </View>
       </ScrollView>
       <View>
@@ -57,11 +69,10 @@ const ForgotPassword2 = (props) => {
         </TouchableOpacity>
       </View>
     </KeyboardAvoidingView>
+  );
+};
 
-  )
-}
-
-export default ForgotPassword2
+export default ForgotPassword2;
 
 const styles = StyleSheet.create({
   textInput: {
@@ -103,8 +114,10 @@ const styles = StyleSheet.create({
     letterSpacing: 0.12,
   },
   btn_Submit: {
-    paddingTop: 13, paddingBottom: 13,
-    paddingStart: 24, paddingEnd: 24,
+    paddingTop: 13,
+    paddingBottom: 13,
+    paddingStart: 24,
+    paddingEnd: 24,
     justifyContent: 'center',
     alignItems: 'center',
     gap: 10,
@@ -113,7 +126,6 @@ const styles = StyleSheet.create({
 
     borderRadius: 6,
   },
-
 
   ic: {
     width: 24,
@@ -129,7 +141,6 @@ const styles = StyleSheet.create({
     fontWeight: '400',
     lineHeight: 24,
     letterSpacing: 0.12,
-
   },
   text_forgotPassword: {
     color: '#4E4B66',
@@ -148,5 +159,5 @@ const styles = StyleSheet.create({
     height: '100%',
     backgroundColor: '#fff',
     padding: 24,
-  }
-})
+  },
+});
